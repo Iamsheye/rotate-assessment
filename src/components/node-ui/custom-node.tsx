@@ -3,18 +3,17 @@ import { Handle, Position } from "@xyflow/react";
 import StacksIcon from "@/assets/stacks-icon";
 import { ShieldCheck, ShieldX } from "lucide-react";
 import MaskIcon from "@/assets/mask-icon";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-  PopoverBody,
-} from "@/components/ui/popover";
 import { Box, Flex, Text, Grid } from "@chakra-ui/react";
 import {
   StartNodeContent,
   ProcessNodeContent,
   EndNodeContent,
 } from "./node-content";
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "../ui/hover-card";
 
 interface CustomNodeProps {
   data: {
@@ -32,9 +31,9 @@ const CustomNode = ({ data }: CustomNodeProps) => {
   };
 
   return (
-    <Popover unstyled >
-      <PopoverTrigger asChild zIndex="-1">
-        <Box zIndex="-1">
+    <HoverCard unstyled>
+      <HoverCardTrigger asChild>
+        <Box>
           <Flex direction="column" align="center" gap="1.5">
             {data.type === "start" ? (
               <MaskIcon style={{ height: "3.25rem", width: "3.25rem" }} />
@@ -85,17 +84,13 @@ const CustomNode = ({ data }: CustomNodeProps) => {
             <Handle type="target" position={Position.Left} />
           )}
         </Box>
-      </PopoverTrigger>
-      <PopoverContent>
-        <PopoverBody asChild>
-          <>
-            {data.type === "start" && <StartNodeContent />}
-            {data.type === "process" && <ProcessNodeContent />}
-            {data.type === "end" && <EndNodeContent status={data.endStatus} />}
-          </>
-        </PopoverBody>
-      </PopoverContent>
-    </Popover>
+      </HoverCardTrigger>
+      <HoverCardContent>
+        {data.type === "start" && <StartNodeContent />}
+        {data.type === "process" && <ProcessNodeContent />}
+        {data.type === "end" && <EndNodeContent status={data.endStatus} />}
+      </HoverCardContent>
+    </HoverCard>
   );
 };
 
