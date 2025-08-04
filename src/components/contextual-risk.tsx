@@ -1,6 +1,7 @@
 import { Text, Box, Flex, Grid, VStack } from "@chakra-ui/react";
 import React from "react";
 import { Inter } from "next/font/google";
+import { token } from "../../styled-system/tokens";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -8,19 +9,19 @@ const inter = Inter({
 
 const ContextualRisk = () => {
   const CONTEXTUAL_RISK = [
-    { text: "Critical", value: 2, color: "#C6190D" },
-    { text: "High", value: 0, color: "#E5372B" },
-    { text: "Medium", value: 0, color: "#EBA622" },
-    { text: "Low", value: 0, color: "#08B94E" },
+    { text: "Critical", value: 2, color: token("colors.error.700") },
+    { text: "High", value: 0, color: token("colors.error.500") },
+    { text: "Medium", value: 0, color: token("colors.warning.500") },
+    { text: "Low", value: 0, color: token("colors.success.600") },
   ];
 
   return (
     <VStack align="stretch" gap="4">
       <Text
-        fontSize="1.125rem"
-        fontWeight="500"
-        lineHeight="1.75"
-        color="#667085">
+        fontSize={token("fontSizes.xl")}
+        fontWeight={token("fontWeights.medium")}
+        lineHeight={token("lineHeights.spacious")}
+        color={token("colors.gray.800")}>
         Contextual Risk
       </Text>
       <Flex
@@ -35,10 +36,15 @@ const ContextualRisk = () => {
               key={risk.text}
               align="center"
               gap="1"
-              fontSize="1rem"
-              lineHeight="1.25"
-              color="#383874">
-              <Box h="0.5rem" w="0.5rem" borderRadius="full" bg={risk.color} />
+              fontSize={token("fontSizes.lg")}
+              lineHeight={token("lineHeights.normal")}
+              color={token("colors.text.tertiary")}>
+              <Box
+                h={token("spacing.2")}
+                w={token("spacing.2")}
+                borderRadius="full"
+                bg={risk.color}
+              />
               <Text>{risk.value}</Text>
               <Text>{risk.text}</Text>
             </Flex>
@@ -46,16 +52,16 @@ const ContextualRisk = () => {
         </VStack>
 
         <Grid
-          h="9rem"
-          w="9rem"
+          h={token("spacing.36")}
+          w={token("spacing.36")}
           placeItems="center"
           borderRadius="full"
-          border="8px solid #C6190D">
+          border={`${token("borders.thick")} ${token("colors.error.700")}`}>
           <Text
-            fontSize="2.25rem"
-            fontWeight="semibold"
-            lineHeight="1.75rem"
-            color="#656575">
+            fontSize={token("fontSizes.3xl")}
+            fontWeight="600"
+            lineHeight={token("lineHeights.spacious")}
+            color={token("colors.text.subtle")}>
             2
           </Text>
         </Grid>

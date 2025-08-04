@@ -22,6 +22,7 @@ import LogoutIcon from "@/assets/logout-icon";
 import React from "react";
 import { Tooltip } from "./ui/tooltip";
 import MenuBtn from "./menu-btn";
+import { token } from "../../styled-system/tokens";
 
 const Chevron = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
@@ -34,7 +35,7 @@ const Chevron = (props: React.SVGProps<SVGSVGElement>) => (
     <path
       d="M6.4 12.4L1 6.99998L6.4 1.59998"
       stroke="white"
-      strokeWidth="1.8"
+      strokeWidth={token("borderWidths.1.8")}
       strokeLinecap="round"
       strokeLinejoin="round"
     />
@@ -95,27 +96,31 @@ const DashboardSidebar = () => {
         as="aside"
         role="navigation"
         aria-label="Main navigation"
-        bg="white"
+        bg={token("colors.background.primary")}
         borderRadius="xl"
-        boxShadow="0px 16px 18px 0px rgba(0, 0, 0, 0.06)"
-        p={isCollapsed ? "28px 20px" : "7"}
+        boxShadow={token("shadows.lg")}
+        p={
+          isCollapsed
+            ? `${token("spacing.7")} ${token("spacing.5")}`
+            : token("spacing.7")
+        }
         position="relative"
         width={isCollapsed ? "80px" : "250px"}
         transition="width 0.3s ease"
-        height="100vh">
+        height={token("sizes.100vh")}>
         <IconButton
           aria-label="Toggle Sidebar"
           onClick={toggleSidebar}
           size="sm"
           position="absolute"
-          top="24px"
+          top={token("spacing.6")}
           right="-16px"
-          bg="#00732E"
-          color="white"
+          bg={token("colors.primary.600")}
+          color={token("colors.background.primary")}
           borderRadius="full"
-          border="3px solid white"
-          boxShadow="0px 1px 4px 0px rgba(12, 12, 13, 0.05)"
-          _hover={{ bg: "#005c24" }}
+          border={`3px solid ${token("colors.background.primary")}`}
+          boxShadow={token("shadows.button")}
+          _hover={{ bg: token("colors.primary.700") }}
           // display={{ base: "none", md: "none" }}
           // _groupHover={{ display: { base: "none", md: "flex" } }}
           zIndex={10}>
@@ -142,29 +147,43 @@ const DashboardSidebar = () => {
                   colorPalette={item.active ? "green" : "gray"}
                   justifyContent={isCollapsed ? "center" : "flex-start"}
                   w="full"
-                  bg={item.active ? "#E9FAF0" : "transparent"}
-                  color={item.active ? "#00481D" : "#525D73"}
+                  bg={item.active ? token("colors.primary.50") : "transparent"}
+                  color={
+                    item.active
+                      ? token("colors.primary.800")
+                      : token("colors.gray.700")
+                  }
                   _hover={{
-                    bg: item.active ? "#E9FAF0" : "#F0F1F3",
+                    bg: item.active
+                      ? token("colors.primary.50")
+                      : token("colors.gray.50"),
                   }}
                   borderRadius="8px"
                   px={isCollapsed ? "2" : "3"}
                   py="2.5"
                   h="auto"
                   minH="10"
-                  fontSize="15px"
-                  fontWeight="400">
+                  fontSize={token("fontSizes.base")}
+                  fontWeight={token("fontWeights.normal")}>
                   <Box
-                    color={item.active ? "#00481D" : "#A3A9B6"}
+                    color={
+                      item.active
+                        ? token("colors.primary.800")
+                        : token("colors.gray.600")
+                    }
                     flexShrink={0}>
                     <item.icon />
                   </Box>
                   {!isCollapsed && (
                     <Text
                       ml="2"
-                      fontSize="15px"
-                      fontWeight="400"
-                      color={item.active ? "#00481D" : "#525D73"}
+                      fontSize={token("fontSizes.base")}
+                      fontWeight={token("fontWeights.normal")}
+                      color={
+                        item.active
+                          ? token("colors.primary.800")
+                          : token("colors.gray.700")
+                      }
                       textTransform="capitalize">
                       {item.label}
                     </Text>
@@ -185,24 +204,24 @@ const DashboardSidebar = () => {
                   variant="ghost"
                   justifyContent={isCollapsed ? "center" : "flex-start"}
                   w="full"
-                  color="#525D73"
-                  _hover={{ bg: "#F0F1F3" }}
+                  color={token("colors.gray.700")}
+                  _hover={{ bg: token("colors.gray.50") }}
                   borderRadius="8px"
                   px={isCollapsed ? "2" : "3"}
                   py="2.5"
                   h="auto"
                   minH="10"
-                  fontSize="15px"
-                  fontWeight="400">
-                  <Box color="#A3A9B6" flexShrink={0}>
+                  fontSize={token("fontSizes.base")}
+                  fontWeight={token("fontWeights.normal")}>
+                  <Box color={token("colors.gray.600")} flexShrink={0}>
                     <item.icon />
                   </Box>
                   {!isCollapsed && (
                     <Text
                       ml="2"
-                      fontSize="15px"
-                      fontWeight="400"
-                      color="#525D73"
+                      fontSize={token("fontSizes.base")}
+                      fontWeight={token("fontWeights.normal")}
+                      color={token("colors.gray.700")}
                       textTransform="capitalize">
                       {item.label}
                     </Text>
@@ -212,7 +231,7 @@ const DashboardSidebar = () => {
             ))}
           </VStack>
 
-          <Separator borderColor="#F9F9F9" />
+          <Separator borderColor={token("colors.gray.900")} />
 
           <HStack
             gap="3"
@@ -238,17 +257,17 @@ const DashboardSidebar = () => {
                   </Box>
                   <VStack gap="0" align="start" flex="1">
                     <Text
-                      fontSize="15px"
-                      fontWeight="400"
-                      color="#525D73"
-                      lineHeight="1.4">
+                      fontSize={token("fontSizes.base")}
+                      fontWeight={token("fontWeights.normal")}
+                      color={token("colors.gray.700")}
+                      lineHeight={token("lineHeights.loose")}>
                       Lorem
                     </Text>
                     <Text
-                      fontSize="15px"
-                      fontWeight="400"
-                      color="#525D73"
-                      lineHeight="1.4">
+                      fontSize={token("fontSizes.base")}
+                      fontWeight={token("fontWeights.normal")}
+                      color={token("colors.gray.700")}
+                      lineHeight={token("lineHeights.loose")}>
                       Lorem
                     </Text>
                   </VStack>

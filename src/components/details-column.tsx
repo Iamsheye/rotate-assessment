@@ -1,5 +1,6 @@
 import { Box, Flex, Heading, Text, VStack } from "@chakra-ui/react";
 import { Check } from "lucide-react";
+import { token } from "../../styled-system/tokens";
 
 import StacksIcon from "@/assets/stacks-icon";
 import {
@@ -36,22 +37,29 @@ const DetailsColumn = () => {
       flexBasis={{ lg: "31%" }}
       overflowY="scroll"
       borderRadius="2xl"
-      bg="white"
-      px="6"
-      py="5"
-      boxShadow="0px 1px 3px 0px #0000000D">
+      bg={token("colors.background.primary")}
+      px={token("spacing.6")}
+      py={token("spacing.5")}
+      boxShadow={token("shadows.xs")}>
       <VStack align="stretch">
-        <VStack gap="8" mb="6">
-          <VStack gap="3" alignItems="flex-start" lineHeight="1.375rem">
-            <Heading as="h2" fontSize="20px" fontWeight="700" color="#02983E">
+        <VStack gap={token("spacing.8")} mb={token("spacing.6")}>
+          <VStack
+            gap={token("spacing.3")}
+            alignItems="flex-start"
+            lineHeight={token("lineHeights.relaxed")}>
+            <Heading
+              as="h2"
+              fontSize={token("fontSizes.2xl")}
+              fontWeight={token("fontWeights.bold")}
+              color={token("colors.primary.500")}>
               Description
             </Heading>
             <Text
-              fontSize="12px"
-              fontWeight="400"
-              lineHeight="1.75em"
+              fontSize={token("fontSizes.sm")}
+              fontWeight={token("fontWeights.normal")}
+              lineHeight={token("lineHeights.extraSpacious")}
               letterSpacing="1%"
-              color="#525D73">
+              color={token("colors.gray.900")}>
               Lorem ipsum dolor sit amet consectetur. Aenean sodales
               pellentesque gravida nibh et magna faucibus. Dui commodo ut metus
               amet egestas habitant viverra. Quisque fusce senectus facilisis
@@ -60,16 +68,23 @@ const DetailsColumn = () => {
             </Text>
           </VStack>
 
-          <VStack gap="3" alignItems="flex-start" lineHeight="1.375rem">
-            <Heading as="h2" fontSize="20px" fontWeight="700" color="#02983E">
+          <VStack
+            gap={token("spacing.3")}
+            alignItems="flex-start"
+            lineHeight={token("lineHeights.relaxed")}>
+            <Heading
+              as="h2"
+              fontSize={token("fontSizes.2xl")}
+              fontWeight={token("fontWeights.bold")}
+              color={token("colors.primary.500")}>
               Extra
             </Heading>
             <Text
-              fontSize="12px"
-              fontWeight="400"
-              lineHeight="1.75em"
+              fontSize={token("fontSizes.sm")}
+              fontWeight={token("fontWeights.normal")}
+              lineHeight={token("lineHeights.extraSpacious")}
               letterSpacing="1%"
-              color="#525D73">
+              color={token("colors.gray.900")}>
               Lorem ipsum dolor sit amet consectetur. Tempus a id adipiscing
               fames egestas tellus dis pretium tempus. Justo nisl nisl lorem
               lectus id ornare. Rhoncus in egestas in amet porttitor
@@ -84,50 +99,68 @@ const DetailsColumn = () => {
           </VStack>
         </VStack>
 
-        <Box height="0" borderBottom="1px solid #E0E2E7" />
+        <Box
+          height="0"
+          borderBottom={`${token("borders.base")} ${token("colors.gray.400")}`}
+        />
 
         {List.map((item, index) => (
-          <Flex key={index} alignItems="center" gap="5" fontSize="0.9375rem">
+          <Flex
+            key={index}
+            alignItems="center"
+            gap={token("spacing.5")}
+            fontSize={token("fontSizes.base")}>
             <Text
-              fontWeight="700"
+              fontWeight={token("fontWeights.bold")}
               textTransform="capitalize"
-              color="#334155"
+              color={token("colors.text.secondary")}
               flexShrink={0}>
               Lorem ipsum dolor
             </Text>
-            <Flex align="center" gap="1">
-              {item.hasCheck && <Check size={16} color="#08B94E" />}
+            <Flex align="center" gap={token("spacing.1")}>
+              {item.hasCheck && (
+                <Check size={16} color={token("colors.success.600")} />
+              )}
 
-              <Text color="#525D73">{item.value}</Text>
+              <Text color={token("colors.gray.900")}>{item.value}</Text>
             </Flex>
           </Flex>
         ))}
 
-        <Box height="0" borderBottom="1px solid #E0E2E7" />
+        <Box
+          height="0"
+          borderBottom={`${token("borders.base")} ${token("colors.gray.400")}`}
+        />
 
-        <VStack gap="3" align="stretch">
-          <Text fontWeight="700" textTransform="capitalize" color="#334155">
+        <VStack gap={token("spacing.3")} align="stretch">
+          <Text
+            fontWeight={token("fontWeights.bold")}
+            textTransform="capitalize"
+            color={token("colors.text.secondary")}>
             Lorem ipsum dolor sit
           </Text>
 
           <Accordion multiple variant="plain">
-            <VStack gap="5" align="stretch">
+            <VStack gap={token("spacing.5")} align="stretch">
               {AccordionList.map((item, index) => (
                 <AccordionItem
                   key={index}
                   value={item.title}
-                  borderRadius="16px"
-                  border="1px solid #F0F1F3"
-                  bg="white"
-                  px="4"
-                  py="3">
+                  borderRadius={token("radii.2xl")}
+                  border={`${token("borders.base")} ${token("colors.gray.300")}`}
+                  bg={token("colors.background.primary")}
+                  px={token("spacing.4")}
+                  py={token("spacing.3")}>
                   <AccordionItemTrigger indicatorPlacement="none">
                     <VStack
                       cursor="pointer"
-                      gap="12px"
+                      gap={token("spacing.3")}
                       align="stretch"
                       w="full">
-                      <Text fontSize="15px" fontWeight="700" color="#030229">
+                      <Text
+                        fontSize={token("fontSizes.base")}
+                        fontWeight={token("fontWeights.bold")}
+                        color={token("colors.text.primary")}>
                         {item.title}
                       </Text>
 
@@ -137,43 +170,50 @@ const DetailsColumn = () => {
                           xl: "nowrap",
                         }}
                         align="center"
-                        gap="4"
+                        gap={token("spacing.4")}
                         borderRadius="lg"
-                        bg="#FAFAFA"
-                        px="16px"
-                        py="6px">
+                        bg={token("colors.background.secondary")}
+                        px={token("spacing.4")}
+                        py={token("spacing.1.5")}>
                         <Flex
                           align="center"
-                          gap="2"
-                          pr={{ xl: "4" }}
-                          borderRight={{ xl: "1px solid #858D9D" }}>
+                          gap={token("spacing.2")}
+                          pr={{ xl: token("spacing.4") }}
+                          borderRight={{
+                            xl: `${token("borders.base")} ${token("colors.gray.700")}`,
+                          }}>
                           <StacksIcon />
 
                           <VStack gap="2px" align="flex-start">
                             <Text
-                              fontSize="12px"
-                              fontWeight="600"
-                              lineHeight="0.875em"
-                              color="#404A60">
+                              fontSize={token("fontSizes.sm")}
+                              fontWeight={token("fontWeights.semibold")}
+                              lineHeight={token("lineHeights.snug")}
+                              color={token("colors.gray.900")}>
                               Server
                             </Text>
                             <Text
-                              fontSize="10px"
-                              fontWeight="500"
-                              color="#667085">
+                              fontSize={token("fontSizes.xs")}
+                              fontWeight={token("fontWeights.medium")}
+                              color={token("colors.gray.500")}>
                               Server
                             </Text>
                           </VStack>
                         </Flex>
 
-                        <Text fontSize="14px" color="#404A60">
+                        <Text
+                          fontSize={token("fontSizes.md")}
+                          color={token("colors.text.muted")}>
                           Lorem ipsum dolor sit amet consectetur.
                         </Text>
                       </Flex>
                     </VStack>
                   </AccordionItemTrigger>
                   <AccordionItemContent padding={0}>
-                    <Text pt="4" fontSize="15px" color="#525D73">
+                    <Text
+                      pt={token("spacing.4")}
+                      fontSize={token("fontSizes.base")}
+                      color={token("colors.gray.900")}>
                       Lorem ipsum dolor sit amet consectetur. Nunc Vitae Tortor
                       Convallis Vitae Arcu Magna
                     </Text>
