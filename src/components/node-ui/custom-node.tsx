@@ -7,13 +7,14 @@ import {
   Popover,
   PopoverContent,
   PopoverTrigger,
+  PopoverBody,
 } from "@/components/ui/popover";
+import { Box, Flex, Text, Grid } from "@chakra-ui/react";
 import {
   StartNodeContent,
   ProcessNodeContent,
   EndNodeContent,
 } from "./node-content";
-import { cn } from "@/lib/utils";
 
 interface CustomNodeProps {
   data: {
@@ -24,44 +25,53 @@ interface CustomNodeProps {
 }
 
 const CustomNode = ({ data }: CustomNodeProps) => {
+  const endStatusColors = {
+    success: "#02983E",
+    error: "#E5372B",
+    warning: "#FF9500",
+  };
+
   return (
-    <Popover>
-      <PopoverTrigger asChild>
-        <div>
-          <div className="flex flex-col items-center gap-1.5">
+    <Popover unstyled >
+      <PopoverTrigger asChild zIndex="-1">
+        <Box zIndex="-1">
+          <Flex direction="column" align="center" gap="1.5">
             {data.type === "start" ? (
-              <MaskIcon className="h-[3.25rem] w-[3.25rem]" />
+              <MaskIcon style={{ height: "3.25rem", width: "3.25rem" }} />
             ) : (
-              <div className="relative">
-                <StacksIcon className="h-[3.25rem] w-[3.25rem]" />
+              <Box position="relative">
+                <StacksIcon style={{ height: "3.25rem", width: "3.25rem" }} />
                 {data.type === "end" && (
-                  <div
-                    className={cn(
-                      "absolute -right-1.5 -top-1.5 grid h-6 w-6 place-content-center rounded-full",
-                      {
-                        "bg-[#02983E]": data.endStatus === "success",
-                        "bg-[#E5372B]": data.endStatus === "error",
-                        "bg-[#FF9500]": data.endStatus === "warning",
-                      },
-                    )}
-                  >
+                  <Grid
+                    position="absolute"
+                    top="-1.5"
+                    right="-1.5"
+                    h="6"
+                    w="6"
+                    placeItems="center"
+                    borderRadius="full"
+                    bg={
+                      data.endStatus
+                        ? endStatusColors[data.endStatus]
+                        : "transparent"
+                    }>
                     {data.endStatus === "success" ? (
-                      <ShieldCheck className="h-4 w-4 text-white" />
+                      <ShieldCheck size={16} color="white" />
                     ) : (
-                      <ShieldX className="h-4 w-4 text-white" />
+                      <ShieldX size={16} color="white" />
                     )}
-                  </div>
+                  </Grid>
                 )}
-              </div>
+              </Box>
             )}
             {typeof data.label === "string" ? (
-              <p className="text-[0.875rem] font-semibold leading-[0.875rem] text-gray-soft-700">
+              <Text fontSize="0.875rem" fontWeight="600" color="#525D73">
                 {data.label}
-              </p>
+              </Text>
             ) : (
               <data.label />
             )}
-          </div>
+          </Flex>
           {data.type === "start" && (
             <Handle type="source" position={Position.Right} />
           )}
@@ -74,14 +84,16 @@ const CustomNode = ({ data }: CustomNodeProps) => {
           {data.type === "end" && (
             <Handle type="target" position={Position.Left} />
           )}
-        </div>
+        </Box>
       </PopoverTrigger>
-      <PopoverContent asChild>
-        <>
-          {data.type === "start" && <StartNodeContent />}
-          {data.type === "process" && <ProcessNodeContent />}
-          {data.type === "end" && <EndNodeContent status={data.endStatus} />}
-        </>
+      <PopoverContent>
+        <PopoverBody asChild>
+          <>
+            {data.type === "start" && <StartNodeContent />}
+            {data.type === "process" && <ProcessNodeContent />}
+            {data.type === "end" && <EndNodeContent status={data.endStatus} />}
+          </>
+        </PopoverBody>
       </PopoverContent>
     </Popover>
   );

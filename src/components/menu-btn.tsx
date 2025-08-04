@@ -1,18 +1,36 @@
 "use client";
+import { IconButton } from "@chakra-ui/react";
 import { Menu } from "lucide-react";
 import React from "react";
-import { useSidebar } from "./ui/sidebar";
+import { css } from "../../styled-system/css";
 
-const MenuBtn = () => {
-  const { toggleSidebar } = useSidebar();
-
+const MenuBtn = ({ onClick }: { onClick: () => void }) => {
   return (
-    <button
-      onClick={toggleSidebar}
-      className="shadow-xsm fixed left-3 top-6 flex h-12 w-12 items-center justify-center rounded-full bg-white md:hidden"
-    >
-      <Menu className="h-8 w-8 text-gray-soft-700" />
-    </button>
+    <IconButton
+      onClick={onClick}
+      aria-label="Toggle sidebar"
+      className={css({
+        position: "fixed",
+        left: "3",
+        top: "6",
+        display: { base: "flex", md: "none" },
+        height: "12",
+        width: "12",
+        borderRadius: "full",
+        bg: "white",
+        boxShadow: "xs",
+        alignItems: "center",
+        justifyContent: "center",
+        zIndex: 10,
+      })}>
+      <Menu
+        className={css({
+          height: "8",
+          width: "8",
+          color: "gray.700",
+        })}
+      />
+    </IconButton>
   );
 };
 

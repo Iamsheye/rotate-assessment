@@ -4,43 +4,81 @@ import DetailsColumn from "@/components/details-column";
 import FlowChart from "@/components/flow-chart";
 import RiskTable from "@/components/risk-table";
 import StatusLegend from "@/components/status-legend";
+import { Box, Flex, Heading, VStack, Separator } from "@chakra-ui/react";
 
 export default function HomePage() {
   return (
-    <main className="flex min-h-screen flex-col gap-5 px-5 py-3 pb-24 tracking-[0.01em] lg:flex-row lg:px-9 lg:py-7 lg:pb-7">
+    <Flex
+      as="main"
+      direction={{ base: "column", lg: "row" }}
+      minH="100vh"
+      gap="5"
+      px={{ base: "5", lg: "9" }}
+      py={{ base: "3", lg: "7" }}
+      pb={{ base: "24", lg: "7" }}
+      style={{
+        letterSpacing: "0.01em",
+      }}>
       <DetailsColumn />
 
-      <div className="order-1 h-full grow overflow-y-scroll rounded-2xl bg-white px-6 py-5 shadow-drop lg:order-2 lg:h-[calc(100dvh-3.5rem)]">
-        <div className="mb-4 flex flex-col gap-4">
-          <h2 className="text-[1.25rem] font-bold text-[#02983E]">
+      <Box
+        order={{ base: 1, lg: 2 }}
+        flexGrow="1"
+        h={{ lg: "calc(100dvh - 3.5rem)" }}
+        overflowY="scroll"
+        borderRadius="2xl"
+        bg="white"
+        px="6"
+        py="5"
+        boxShadow="0px 1px 3px 0px #0000000D">
+        <VStack gap="4" align="stretch" mb="4">
+          <Heading as="h2" fontWeight="700" fontSize="20px" color="#02983E">
             Lorem Lorem Lorem
-          </h2>
-          <div className="flex flex-col gap-2.5 rounded-lg bg-gray-soft-25 px-2 py-4">
+          </Heading>
+          <VStack
+            gap="2.5"
+            borderRadius="lg"
+            bg="#FAFAFA"
+            px="2"
+            py="4"
+            align="stretch">
             <FlowChart />
-            <hr className="h-[1px] w-full bg-gray-soft-100" />
-            <div className="flex flex-wrap">
+            <Separator borderColor="#E0E2E7" />
+            <Flex wrap="wrap">
               <StatusLegend status="error" />
               <StatusLegend status="warning" />
               <StatusLegend status="success" />
-            </div>
-          </div>
-        </div>
+            </Flex>
+          </VStack>
+        </VStack>
 
-        <div className="flex flex-col gap-4">
-          <h2 className="text-[1.25rem] font-bold text-[#02983E]">
+        <VStack gap="4" align="stretch">
+          <Heading as="h2" fontWeight="700" fontSize="20px" color="#02983E">
             Lorem ipsum dolor sit
-          </h2>
+          </Heading>
 
-          <div className="flex flex-col flex-wrap gap-4 lg:flex-row">
-            <div className="grow basis-[48%]">
+          <Flex direction={{ base: "column", lg: "row" }} wrap="wrap" gap="4">
+            <Box flex="1" flexBasis="48%">
               <RiskTable />
-            </div>
-            <div className="flex grow basis-[48%] flex-col justify-between gap-2 rounded-[20px] border border-[#F2F3F7] bg-white px-6 py-2 shadow-drop-lg">
+            </Box>
+            <Flex
+              grow="1"
+              flexBasis="48%"
+              direction="column"
+              justify="space-between"
+              gap="2"
+              borderRadius="20px"
+              borderWidth="1px"
+              borderColor="#F2F3F7"
+              bg="white"
+              px="6"
+              py="2"
+              boxShadow="0px 2.9px 4px 0px #0000000D">
               <ContextualRisk />
-            </div>
-          </div>
-        </div>
-      </div>
-    </main>
+            </Flex>
+          </Flex>
+        </VStack>
+      </Box>
+    </Flex>
   );
 }

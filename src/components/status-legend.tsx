@@ -1,36 +1,39 @@
-import { cn } from "@/lib/utils";
 import { ShieldCheck, ShieldX } from "lucide-react";
+import { Flex, Grid, Text } from "@chakra-ui/react";
 
 type StatusLegendProps = {
   status: "success" | "error" | "warning";
 };
 
 const StatusLegend = ({ status }: StatusLegendProps) => {
+  const statusColors = {
+    success: "#02983E",
+    error: "#E5372B",
+    warning: "#FF9500",
+  };
+
   return (
-    <div className="mx-3 flex items-center gap-2">
-      <div
-        className={cn("grid h-6 w-6 place-content-center rounded-full", {
-          "bg-[#02983E]": status === "success",
-          "bg-[#E5372B]": status === "error",
-          "bg-[#FF9500]": status === "warning",
-        })}
-      >
+    <Flex mx="3" align="center" gap="2">
+      <Grid
+        h="6"
+        w="6"
+        placeItems="center"
+        borderRadius="full"
+        bg={statusColors[status]}>
         {status === "success" ? (
-          <ShieldCheck className="h-4 w-4 text-white" />
+          <ShieldCheck size={16} color="white" />
         ) : (
-          <ShieldX className="h-4 w-4 text-white" />
+          <ShieldX size={16} color="white" />
         )}
-      </div>
-      <span
-        className={cn("text-[0.9375rem] font-bold leading-[2.375rem]", {
-          "text-[#02983E]": status === "success",
-          "text-[#E5372B]": status === "error",
-          "text-[#FF9500]": status === "warning",
-        })}
-      >
+      </Grid>
+      <Text
+        fontSize="0.9375rem"
+        fontWeight="700"
+        lineHeight="2.375rem"
+        color={statusColors[status]}>
         Lorem
-      </span>
-    </div>
+      </Text>
+    </Flex>
   );
 };
 

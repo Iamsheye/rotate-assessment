@@ -1,5 +1,6 @@
 import StacksIcon from "@/assets/stacks-icon";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { Table, Flex, Box, Text, VStack } from "@chakra-ui/react";
 
 const RiskTable = () => {
   const RISKS = [
@@ -8,56 +9,101 @@ const RiskTable = () => {
   ];
 
   return (
-    <table className="w-full border-separate border-spacing-0 rounded-lg border border-gray-soft-100 bg-white">
-      <thead className="">
-        <tr>
-          {["Asset", "Contextual Risk"].map((header) => (
-            <td
-              key={header}
-              className="border-b border-gray-soft-100 px-6 py-2.5 text-[0.875rem] font-normal leading-[1.25rem] text-gray-soft-400"
-            >
-              {header}
-            </td>
-          ))}
-        </tr>
-      </thead>
-
-      <tbody>
-        {RISKS.map((risk, index) => (
-          <tr key={risk.ip + index} className="">
-            <td className="flex items-center gap-2 border-b border-gray-soft-100 p-2.5">
-              <StacksIcon className="h-7 w-8 shrink-0 md:h-9 md:w-9 lg:h-11 lg:w-11" />
-              <div className="flex flex-col">
-                <p className="mb-1 text-[0.75rem] font-semibold leading-[0.875rem] text-gray-soft-700">
-                  {risk.name}
-                </p>
-                <span className="text-[0.625rem] font-medium leading-[0.625rem] text-gray-soft-500">
+    <Table.ScrollArea
+      w="full"
+      borderRadius="lg"
+      border="1px solid"
+      borderColor="#E0E2E7">
+      <Table.Root>
+        <Table.Header>
+          <Table.Row>
+            {["Asset", "Contextual Risk"].map((header) => (
+              <Table.ColumnHeader
+                key={header}
+                borderBottom="1px solid"
+                borderColor="#E0E2E7"
+                px="6"
+                py="2.5"
+                fontSize="0.875rem"
+                lineHeight="1.25rem"
+                color="#858D9D"
+                bg="white">
+                {header}
+              </Table.ColumnHeader>
+            ))}
+          </Table.Row>
+        </Table.Header>
+        <Table.Body bg="white">
+          {RISKS.map((risk, index) => (
+            <Table.Row key={risk.ip + index} bg="white">
+              <Table.Cell
+                borderBottom="1px solid"
+                borderColor="#E0E2E7"
+                p="2.5">
+                <Flex align="center" gap="2">
+                  <Box
+                    as={StacksIcon}
+                    h={{ base: 7, md: 9, lg: 11 }}
+                    w={{ base: 8, md: 9, lg: 11 }}
+                    flexShrink={0}
+                  />
+                  <VStack align="start" gap={0}>
+                    <Text
+                      mb="1"
+                      fontSize="0.75rem"
+                      fontWeight="600"
+                      lineHeight="0.875rem"
+                      color="#525D73">
+                      {risk.name}
+                    </Text>
+                    <Text
+                      as="span"
+                      fontSize="0.625rem"
+                      fontWeight="500"
+                      lineHeight="0.625rem"
+                      color="#667085">
+                      {risk.ip}
+                    </Text>
+                  </VStack>
+                </Flex>
+              </Table.Cell>
+              <Table.Cell
+                borderBottom="1px solid"
+                borderColor="#E0E2E7"
+                px="6"
+                py="0">
+                <Text
+                  as="span"
+                  borderRadius="38px"
+                  bg="#FFE2E0"
+                  px="4"
+                  py="1"
+                  fontSize="0.9375rem"
+                  fontWeight="600"
+                  color="#C6190D">
                   {risk.ip}
-                </span>
-              </div>
-            </td>
-            <td className="border-b border-gray-soft-100 px-6">
-              <span className="rounded-[38px] bg-[#FFE2E0] px-4 py-1 text-[0.9375rem] font-semibold text-[#C6190D]">
-                {risk.ip}
-              </span>
-            </td>
-          </tr>
-        ))}
-        <tr>
-          <td className="flex w-[175%] items-center justify-center py-3">
-            <button className="">
-              <ChevronLeft className="h-5 w-5 text-gray-soft-200" />
-            </button>
-            <span className="text-[0.875rem] text-gray-soft-500">
-              Showing 1-2 of 2
-            </span>
-            <button className="">
-              <ChevronRight className="h-5 w-5 text-gray-soft-400" />
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+                </Text>
+              </Table.Cell>
+            </Table.Row>
+          ))}
+          <Table.Row bg="white">
+            <Table.Cell colSpan={2} py="3" borderColor="white">
+              <Flex w="full" align="center" justify="center">
+                <button title="Previous page">
+                  <ChevronLeft size={20} color="#C2C6CE" />
+                </button>
+                <Text fontSize="0.875rem" color="#667085">
+                  Showing 1-2 of 2
+                </Text>
+                <button title="Next page">
+                  <ChevronRight size={20} color="#858D9D" />
+                </button>
+              </Flex>
+            </Table.Cell>
+          </Table.Row>
+        </Table.Body>
+      </Table.Root>
+    </Table.ScrollArea>
   );
 };
 

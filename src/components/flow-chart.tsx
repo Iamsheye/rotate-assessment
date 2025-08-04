@@ -3,6 +3,7 @@ import { ReactFlow, type Node, type Edge } from "@xyflow/react";
 import CustomEdge from "./node-ui/custom-edge";
 import CustomNode from "./node-ui/custom-node";
 import "@xyflow/react/dist/style.css";
+import { Box, Text, VStack } from "@chakra-ui/react";
 
 const nodeStyle: React.CSSProperties = {
   width: "max-content",
@@ -35,14 +36,23 @@ const FlowDiagram = () => {
       id: "node4",
       data: {
         label: () => (
-          <div className="text-center">
-            <p className="text-[0.875rem] font-semibold leading-[0.875rem] text-gray-soft-700">
+          <VStack textAlign="center">
+            <Text
+              fontSize="0.875rem"
+              fontWeight="600"
+              lineHeight="0.875rem"
+              color="#525D73">
               Loremipsumdolorsit
-            </p>
-            <span className="text-[0.75rem] font-medium leading-[0.875rem] text-gray-soft-500">
+            </Text>
+            <Text
+              as="span"
+              fontSize="0.75rem"
+              fontWeight="500"
+              lineHeight="0.875rem"
+              color="#667085">
               192.168.1.1
-            </span>
-          </div>
+            </Text>
+          </VStack>
         ),
         type: "end",
         endStatus: "error",
@@ -55,14 +65,23 @@ const FlowDiagram = () => {
       id: "node5",
       data: {
         label: () => (
-          <div className="text-center">
-            <p className="text-[0.875rem] font-semibold leading-[0.875rem] text-gray-soft-700">
+          <VStack textAlign="center">
+            <Text
+              fontSize="0.875rem"
+              fontWeight="600"
+              lineHeight="0.875rem"
+              color="#525D73">
               Loremipsumdolorsit
-            </p>
-            <span className="text-[0.75rem] font-medium leading-[0.875rem] text-gray-soft-500">
+            </Text>
+            <Text
+              as="span"
+              fontSize="0.75rem"
+              fontWeight="500"
+              lineHeight="0.875rem"
+              color="#667085">
               192.168.1.2
-            </span>
-          </div>
+            </Text>
+          </VStack>
         ),
         type: "end",
         endStatus: "error",
@@ -81,15 +100,15 @@ const FlowDiagram = () => {
   ];
 
   return (
-    <div className="h-[14.5rem] w-full">
+    <Box h="14.5rem" w="full">
       <ReactFlow
         fitView
         nodes={nodes}
         edges={edges}
         nodeTypes={{ custom: CustomNode }}
         edgeTypes={{ custom: CustomEdge }}
-      ></ReactFlow>
-    </div>
+      />
+    </Box>
   );
 };
 

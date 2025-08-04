@@ -1,6 +1,6 @@
-import { Inter } from "next/font/google";
+import { Text, Box, Flex, Grid, VStack } from "@chakra-ui/react";
 import React from "react";
-import { cn } from "@/lib/utils";
+import { Inter } from "next/font/google";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -15,35 +15,52 @@ const ContextualRisk = () => {
   ];
 
   return (
-    <>
-      <p className="text-[1.125rem] font-medium leading-[1.75] text-gray-soft-500">
+    <VStack align="stretch" gap="4">
+      <Text
+        fontSize="1.125rem"
+        fontWeight="500"
+        lineHeight="1.75"
+        color="#667085">
         Contextual Risk
-      </p>
-      <div
-        className={`flex flex-wrap items-center justify-between gap-2 ${inter.className}`}
-      >
-        <div className="flex flex-col gap-4">
+      </Text>
+      <Flex
+        align="center"
+        justify="space-between"
+        wrap="wrap"
+        gap="2"
+        fontFamily={inter.style.fontFamily}>
+        <VStack align="stretch" gap="4">
           {CONTEXTUAL_RISK.map((risk) => (
-            <div
+            <Flex
               key={risk.text}
-              className="flex items-center gap-1 text-[1rem] leading-[1.25] text-[#383874]"
-            >
-              <span
-                className={cn("h-2 w-2 rounded-full", `bg-[${risk.color}]`)}
-              ></span>
-              <span className="">{risk.value}</span>
-              <span className="">{risk.text}</span>
-            </div>
+              align="center"
+              gap="1"
+              fontSize="1rem"
+              lineHeight="1.25"
+              color="#383874">
+              <Box h="0.5rem" w="0.5rem" borderRadius="full" bg={risk.color} />
+              <Text>{risk.value}</Text>
+              <Text>{risk.text}</Text>
+            </Flex>
           ))}
-        </div>
+        </VStack>
 
-        <div className="grid h-36 w-36 place-content-center rounded-full border-[8px] border-[#C6190D]">
-          <p className="text-[2.25rem] font-semibold leading-[1.75rem] text-[#656575]">
+        <Grid
+          h="9rem"
+          w="9rem"
+          placeItems="center"
+          borderRadius="full"
+          border="8px solid #C6190D">
+          <Text
+            fontSize="2.25rem"
+            fontWeight="semibold"
+            lineHeight="1.75rem"
+            color="#656575">
             2
-          </p>
-        </div>
-      </div>
-    </>
+          </Text>
+        </Grid>
+      </Flex>
+    </VStack>
   );
 };
 

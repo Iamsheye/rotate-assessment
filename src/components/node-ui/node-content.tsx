@@ -1,7 +1,7 @@
 import { IBM_Plex_Mono } from "next/font/google";
 import { ReceiptText, ShieldCheck, ShieldX } from "lucide-react";
 import StacksIcon from "@/assets/stacks-icon";
-import { cn } from "@/lib/utils";
+import { Box, Flex, Text, Grid, VStack } from "@chakra-ui/react";
 
 const ibmPlex = IBM_Plex_Mono({
   weight: "600",
@@ -9,115 +9,198 @@ const ibmPlex = IBM_Plex_Mono({
 });
 
 export const Pill = ({ color, bg }: { color: string; bg: string }) => (
-  <span
-    className={`rounded-md px-1 py-0.5 !text-[0.875rem] !font-semibold ${ibmPlex.className}`}
-    style={{
-      color,
-      backgroundColor: bg,
-    }}
-  >
+  <Text
+    as="span"
+    borderRadius="md"
+    px="1"
+    py="0.5"
+    fontSize="0.875rem"
+    fontWeight="600"
+    fontFamily={ibmPlex.style.fontFamily}
+    color={color}
+    bg={bg}>
     1.2.3.4
-  </span>
+  </Text>
 );
 
 export const StartNodeContent = () => (
-  <div
-    className={`w-[460px] rounded-[20px] bg-gray-soft-25 px-7 py-5 shadow-xsm *:text-[0.875rem] *:font-semibold *:leading-[1.5rem] ${ibmPlex.className}`}
-  >
-    <div className="mb-3 *:text-[#E5372B]">
-      <p className="mb-3 w-[216px] rounded-lg bg-[#FFF1F0]">
+  <Box
+    w="460px"
+    borderRadius="20px"
+    bg="#FAFAFA"
+    px="7"
+    py="5"
+    boxShadow="xsm"
+    fontSize="0.875rem"
+    fontWeight="600"
+    lineHeight="1.5rem"
+    fontFamily={ibmPlex.style.fontFamily}>
+    <Box mb="3" color="#E5372B">
+      <Text mb="3" w="216px" borderRadius="lg" bg="#FFF1F0">
         Lorem Ipsum Dolor Sit
-      </p>
-      <div className="flex flex-wrap justify-end gap-1">
+      </Text>
+      <Flex wrap="wrap" justify="flex-end" gap="1">
         {["1.2.3.4", "1.2.3.4", "1.2.3.4", "1.2.3.4", "1.2.3.4", "1.2.3.4"].map(
           (text, index) => (
-            <p key={index} className="w-[110px] rounded-lg bg-[#FFF1F0]">
+            <Text key={index} w="110px" borderRadius="lg" bg="#FFF1F0">
               {text}
-            </p>
-          ),
+            </Text>
+          )
         )}
-      </div>
-    </div>
-    <div className="inline-block rounded-lg bg-[#F2EDFF] px-1 py-0.5">
-      <p className="text-[#6236CC]">Lorem: 1.2.3.4</p>
-    </div>
-  </div>
+      </Flex>
+    </Box>
+    <Box display="inline-block" borderRadius="lg" bg="#F2EDFF" px="1" py="0.5">
+      <Text color="#6236CC">Lorem: 1.2.3.4</Text>
+    </Box>
+  </Box>
 );
 
 export const ProcessNodeContent = () => (
-  <div className="flex w-[374px] flex-col gap-1.5 rounded-lg bg-gray-soft-25 px-4 py-2.5 shadow-drop_shadow">
-    <div className="flex items-center gap-3">
-      <StacksIcon className="h-10 w-10" />
-      <p className="text-[0.875rem] font-semibold text-gray-soft-700">
+  <VStack
+    w="374px"
+    gap="1.5"
+    borderRadius="lg"
+    bg="#FAFAFA"
+    px="4"
+    py="2.5"
+    boxShadow="0px 4px 4px 0px #00000040"
+    align="stretch">
+    <Flex align="center" gap="3">
+      <StacksIcon style={{ height: "2.5rem", width: "2.5rem" }} />
+      <Text fontSize="0.875rem" fontWeight="600" color="#525D73">
         Loremipsu
-      </p>
-    </div>
-    <div className="flex flex-wrap items-center gap-1 *:text-[1rem] *:font-bold *:leading-[1.5] *:text-gray-soft-700">
-      <ReceiptText className="h-4 w-4 text-gray-soft-400" />
-      <span>Lorem:</span>
-      <span className="">Loremipsum Loremipsum</span>
+      </Text>
+    </Flex>
+    <Flex
+      wrap="wrap"
+      align="center"
+      gap="1"
+      fontSize="1rem"
+      fontWeight="700"
+      lineHeight="1.5"
+      color="#525D73">
+      <ReceiptText size={16} color="#858D9D" />
+      <Text as="span">Lorem:</Text>
+      <Text as="span">Loremipsum Loremipsum</Text>
       <Pill color="#6236CC" bg="#F2EDFF" />
-    </div>
-    <div className="flex flex-wrap items-center gap-1 *:font-bold *:leading-[1.5] *:text-gray-soft-700">
+    </Flex>
+    <Flex
+      wrap="wrap"
+      align="center"
+      gap="1"
+      fontWeight="700"
+      lineHeight="1.5"
+      color="#525D73">
       <Pill color="#6236CC" bg="#F2EDFF" />
-      <span className="">Loremipsum</span>
+      <Text as="span">Loremipsum</Text>
       <Pill color="#6236CC" bg="#F2EDFF" />
       <Pill color="#6236CC" bg="#F2EDFF" />
-    </div>
-  </div>
+    </Flex>
+  </VStack>
 );
 
 export const EndNodeContent = ({
   status,
 }: {
   status?: "success" | "error" | "warning";
-}) => (
-  <div className="flex w-[288px] flex-col gap-1.5 rounded-lg bg-gray-soft-25 px-4 py-2.5 shadow-drop_shadow">
-    <div className="flex items-center gap-3">
-      <div className="relative">
-        <StacksIcon className="h-10 w-10" />
-        <div
-          className={cn(
-            "absolute -right-1.5 -top-1.5 grid h-6 w-6 place-content-center rounded-full",
-            {
-              "bg-[#02983E]": status === "success",
-              "bg-[#E5372B]": status === "error",
-              "bg-[#FF9500]": status === "warning",
-            },
-          )}
-        >
-          {status === "success" ? (
-            <ShieldCheck className="h-4 w-4 text-white" />
-          ) : (
-            <ShieldX className="h-4 w-4 text-white" />
-          )}
-        </div>
-      </div>
-      <div className="flex flex-col gap-1">
-        <p className="text-[0.875rem] font-semibold text-gray-soft-700">
-          Loremipsumdolorsit
-        </p>
-        <span className="text-[0.75rem] font-semibold leading-[0.875rem] text-gray-soft-500">
-          192.168.1.1
-        </span>
-      </div>
-    </div>
-    <div className="flex flex-wrap items-center gap-1 *:text-[1rem] *:font-bold *:leading-[1.5] *:text-gray-soft-700">
-      <ReceiptText className="h-4 w-4 text-gray-soft-400" />
-      <span>Lorem:</span>
-      <span
-        className={`rounded-md bg-[#FFF9ED] px-1 py-0.5 !text-[0.875rem] font-semibold !text-[#EBA622] ${ibmPlex.className}`}
-      >
-        Lorem &quot;ipsum&quot;
-      </span>
-    </div>
-    <div className="flex flex-wrap items-center gap-1 *:text-[1rem] *:font-bold *:leading-[1.5] *:text-gray-soft-700">
-      <span>Loremipsum</span>
-      <span
-        className={`rounded-md bg-[#ECF5FF] px-1 py-0.5 !text-[0.875rem] font-semibold !text-[#0053B5] ${ibmPlex.className}`}
-      >
-        Lorem 1234,5678
-      </span>
-    </div>
-  </div>
-);
+}) => {
+  const endStatusColors = {
+    success: "#02983E",
+    error: "#E5372B",
+    warning: "#FF9500",
+  };
+
+  return (
+    <VStack
+      w="288px"
+      gap="1.5"
+      borderRadius="lg"
+      bg="#FAFAFA"
+      px="4"
+      py="2.5"
+      boxShadow="0px 4px 4px 0px #00000040"
+      align="stretch">
+      <Flex align="center" gap="3">
+        <Box position="relative">
+          <StacksIcon style={{ height: "2.5rem", width: "2.5rem" }} />
+          <Grid
+            position="absolute"
+            top="-1.5"
+            right="-1.5"
+            h="6"
+            w="6"
+            placeItems="center"
+            borderRadius="full"
+            bg={status ? endStatusColors[status] : "transparent"}>
+            {status === "success" ? (
+              <ShieldCheck size={16} color="white" />
+            ) : (
+              <ShieldX size={16} color="white" />
+            )}
+          </Grid>
+        </Box>
+        <VStack align="stretch" gap="1">
+          <Text fontSize="0.875rem" fontWeight="600" color="#525D73">
+            Loremipsumdolorsit
+          </Text>
+          <Text
+            fontSize="0.75rem"
+            fontWeight="600"
+            lineHeight="0.875rem"
+            color="#667085">
+            192.168.1.1
+          </Text>
+        </VStack>
+      </Flex>
+
+      <Flex wrap="wrap" align="center" gap="1">
+        <ReceiptText size={16} color="#858D9D" />
+        <Text
+          as="span"
+          fontSize="1rem"
+          lineHeight="1.5"
+          fontWeight="700"
+          color="#525D73">
+          Lorem:
+        </Text>
+        <Text
+          as="span"
+          borderRadius="md"
+          bg="#FFF9ED"
+          px="1"
+          py="0.5"
+          fontSize="0.875rem"
+          lineHeight="1.5"
+          fontWeight="600"
+          fontFamily={ibmPlex.style.fontFamily}
+          color="#EBA622">
+          Lorem &quot;ipsum&quot;
+        </Text>
+      </Flex>
+
+      <Flex wrap="wrap" align="center" gap="1">
+        <Text
+          as="span"
+          fontSize="1rem"
+          lineHeight="1.5"
+          fontWeight="700"
+          color="#525D73">
+          Loremipsum
+        </Text>
+        <Text
+          as="span"
+          borderRadius="md"
+          bg="#ECF5FF"
+          px="1"
+          py="0.5"
+          fontSize="0.875rem"
+          lineHeight="1.5"
+          fontWeight="600"
+          fontFamily={ibmPlex.style.fontFamily}
+          color="#0053B5">
+          Lorem 1234,5678
+        </Text>
+      </Flex>
+    </VStack>
+  );
+};

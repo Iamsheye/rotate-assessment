@@ -1,11 +1,10 @@
 import DashboardSidebar from "@/components/dashboard-sidebar";
-import MenuBtn from "@/components/menu-btn";
-import { SidebarProvider } from "@/components/ui/sidebar";
-import { TooltipProvider } from "@/components/ui/tooltip";
-
-import "@/styles/globals.css";
+import "./globals.css";
 import { type Metadata } from "next";
 import { Public_Sans } from "next/font/google";
+import { Provider } from "@/components/ui/provider";
+import { css } from "styled-system/css";
+import { Flex } from "@chakra-ui/react";
 
 export const metadata: Metadata = {
   title: "Rotate Assessment",
@@ -22,17 +21,25 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${publicSans.className}`}>
-      <body className="">
-        <TooltipProvider delayDuration={100}>
-          <SidebarProvider>
-            <div className="flex grow">
-              <MenuBtn />
-              <DashboardSidebar />
-              <div className="grow">{children}</div>
+    <html
+      suppressHydrationWarning
+      lang="en"
+      className={`${publicSans.className}`}>
+      <body
+        className={css({
+          bg: "#fafafa",
+        })}>
+        <Provider>
+          <Flex grow={1}>
+            <DashboardSidebar />
+            <div
+              className={css({
+                flexGrow: 1,
+              })}>
+              {children}
             </div>
-          </SidebarProvider>
-        </TooltipProvider>
+          </Flex>
+        </Provider>
       </body>
     </html>
   );
