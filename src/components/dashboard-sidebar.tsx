@@ -21,7 +21,7 @@ import NotificationIcon from "@/assets/notification-icon";
 import LogoutIcon from "@/assets/logout-icon";
 import React from "react";
 import { Tooltip } from "./ui/tooltip";
-import MenuBtn from "./menu-btn";
+// import MenuBtn from "./menu-btn";
 import { token } from "../../styled-system/tokens";
 
 const Chevron = (props: React.SVGProps<SVGSVGElement>) => (
