@@ -1,8 +1,8 @@
 import React from "react";
 
-type ShrinkIconProps = React.SVGProps<SVGSVGElement>;
+type StacksIconProps = React.SVGProps<SVGSVGElement>;
 
-const StacksIcon = (props: ShrinkIconProps) => {
+const StacksIcon = (props: StacksIconProps) => {
   return (
     <svg
       width="53"

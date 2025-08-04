@@ -58,12 +58,12 @@ export default function HomePage() {
           </Heading>
 
           <Flex direction={{ base: "column", lg: "row" }} wrap="wrap" gap="4">
-            <Box flex="1" flexBasis="48%">
+            <Box flex="1" flexBasis="47%">
               <RiskTable />
             </Box>
             <Flex
               grow="1"
-              flexBasis="48%"
+              flexBasis="47%"
               direction="column"
               justify="space-between"
               gap="2"

@@ -93,6 +93,8 @@ const DashboardSidebar = () => {
       {/* <MenuBtn onClick={toggleSidebar} /> */}
       <Box
         as="aside"
+        role="navigation"
+        aria-label="Main navigation"
         bg="white"
         borderRadius="xl"
         boxShadow="0px 16px 18px 0px rgba(0, 0, 0, 0.06)"
@@ -252,13 +254,21 @@ const DashboardSidebar = () => {
                   </VStack>
                 </HStack>
 
-                <button style={{ cursor: "pointer" }}>
+                <button
+                  aria-label="Logout"
+                  style={{
+                    cursor: "pointer",
+                  }}>
                   <LogoutIcon />
                 </button>
               </>
             ) : (
               <Tooltip content="Logout" positioning={{ placement: "right" }}>
-                <button style={{ cursor: "pointer" }}>
+                <button
+                  aria-label="Logout"
+                  style={{
+                    cursor: "pointer",
+                  }}>
                   <LogoutIcon />
                 </button>
               </Tooltip>

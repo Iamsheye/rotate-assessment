@@ -89,13 +89,13 @@ const RiskTable = () => {
           <Table.Row bg="white">
             <Table.Cell colSpan={2} py="3" borderColor="white">
               <Flex w="full" align="center" justify="center">
-                <button title="Previous page">
+                <button aria-label="Previous page">
                   <ChevronLeft size={20} color="#C2C6CE" />
                 </button>
                 <Text fontSize="0.875rem" color="#667085">
                   Showing 1-2 of 2
                 </Text>
-                <button title="Next page">
+                <button aria-label="Next page">
                   <ChevronRight size={20} color="#858D9D" />
                 </button>
               </Flex>
